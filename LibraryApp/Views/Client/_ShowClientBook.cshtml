@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LibraryApp.Services.Dtos.Book.BookWithStatusDto>
+
+<div>
+    @{
+        int elCounter = 0;
+    }
+    @foreach (var el in Model)
+    {
+
+
+        elCounter++;
+        <dl class="dl-horizontal">
+            <dt>
+                Статус
+            </dt>
+
+            <dd>
+
+                @if (el.Status == 0)
+                {
+                    <label>Возвращена</label>
+                }
+                else
+                {
+                    <label>Выдана</label>
+                }
+            </dd>
+
+            <dt>
+                Книга
+            </dt>
+
+            <dd>
+                @el.Name
+            </dd>
+
+            <dt>
+                Номер книги
+            </dt>
+
+            <dd>
+                @el.BookId
+            </dd>
+
+            <dt>
+                Дата действия
+            </dt>
+
+            <dd>
+                @el.WriteDate
+            </dd>
+
+            @if (el.Status == 1 && elCounter == 1)
+            {
+                <dd>
+                    <button class="delete-client-book-button" data-bookId="@el.BookId" data-clientId="@ViewBag.clientId">Вернуть</button>
+                </dd>
+            }
+        </dl>
+        if (elCounter != Model.Count())
+        {
+            <hr />
+        }
+    }
+</div>
+
+
